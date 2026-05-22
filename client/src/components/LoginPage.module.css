@@ -1,0 +1,384 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.videoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+}
+
+.contentBottom {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  font-weight: 800;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  letter-spacing: -0.5px;
+}
+
+.titleLarge {
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  font-weight: 900;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(108, 99, 255, 0.3);
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin: 0 0 2rem;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+}
+
+/* Game-style buttons */
+.gameButton {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 2px solid rgba(108, 99, 255, 0.6);
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.8), rgba(80, 60, 200, 0.9));
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.gameButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(108, 99, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(108, 99, 255, 0.9);
+}
+
+.gameButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
+}
+
+.gameButtonLarge {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  border: 2px solid rgba(255, 200, 50, 0.6);
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(255, 180, 0, 0.9), rgba(255, 120, 0, 0.9));
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 150, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.gameButtonLarge:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(255, 150, 0, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.25);
+}
+
+.gameButtonLarge:active {
+  transform: translateY(0) scale(1);
+}
+
+.gameButtonSecondary {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.gameButtonSecondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.backLink {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #fff;
+}
+
+/* Card for create/import wallet */
+.card {
+  background: rgba(20, 20, 40, 0.85);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  margin-top: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.cardTitle {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.cardDescription {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+.cardDescription strong {
+  color: #ff6b6b;
+}
+
+.keyDisplay {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.keyLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.keyValue {
+  color: #a78bfa;
+  font-size: 0.72rem;
+  word-break: break-all;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: ui-monospace, Consolas, monospace;
+  background: none;
+  padding: 0;
+}
+
+.copyButton {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(108, 99, 255, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+  background: rgba(108, 99, 255, 0.15);
+  color: #a78bfa;
+  transition: all 0.2s ease;
+}
+
+.copyButton:hover {
+  background: rgba(108, 99, 255, 0.3);
+  color: #fff;
+}
+
+.addressLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+.walletAddress {
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: ui-monospace, Consolas, monospace;
+  text-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
+}
+
+.connectedLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.authenticatedSection {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-family: ui-monospace, Consolas, monospace;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.2);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.inputError {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0;
+}
+
+.warning {
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid rgba(255, 170, 0, 0.4);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  color: #ffcc44;
+  text-align: center;
+  max-width: 360px;
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #6c63ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingText {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .content {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .titleLarge {
+    font-size: 2.2rem;
+  }
+
+  .gameButton,
+  .gameButtonSecondary {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .gameButtonLarge {
+    font-size: 1.1rem;
+    padding: 0.9rem 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .keyValue {
+    font-size: 0.6rem;
+  }
+}

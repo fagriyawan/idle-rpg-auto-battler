@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #1a1a2e;
+}
+
+.card {
+  background-color: #16213e;
+  border: 1px solid #2a2a4a;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.welcome {
+  font-size: 1.75rem;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.label {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.walletAddress {
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: ui-monospace, Consolas, monospace;
+  margin: 0 0 1.5rem;
+  word-break: break-all;
+}
+
+.lastLogin {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin: 0 0 2rem;
+}
+
+.logoutButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  min-width: 220px;
+  background-color: #6c63ff;
+  color: #fff;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: #5a52e0;
+}
+
+.loading {
+  text-align: center;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #444;
+  border-top: 3px solid #6c63ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  margin-top: 1rem;
+  color: #ccc;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .welcome {
+    font-size: 1.4rem;
+  }
+
+  .logoutButton {
+    min-width: 180px;
+    font-size: 0.9rem;
+  }
+}
