@@ -17,3 +17,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Hero assets (too large for git, keep locally)
+client/public/assets/heroes/
