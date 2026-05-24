@@ -1,0 +1,23 @@
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.loadingPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingIcon {
+  font-size: 1.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}

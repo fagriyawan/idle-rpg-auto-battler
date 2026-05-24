@@ -1,4 +1,4 @@
-import SpineCharacter from './SpineCharacter';
+import SpineRenderer from './SpineRenderer';
 import styles from './HeroesPanel.module.css';
 
 interface Hero {
@@ -20,38 +20,23 @@ interface Hero {
 const DUMMY_HEROES: Hero[] = [
   {
     id: '1', name: 'Elise', level: 30, stars: 2, classType: 'Warrior', classIcon: '⚔️',
-    spine: { jsonUrl: '/assets/heroes/001/cream_arcade_000.json', atlasUrl: '/assets/heroes/001/cream_arcade_000.atlas' },
+    spine: { jsonUrl: '/assets/heroes/character_spine3875/001/action.json', atlasUrl: '/assets/heroes/character_spine3875/001/action.atlas' },
     active: true,
   },
   {
     id: '2', name: 'Ray', level: 26, stars: 3, classType: 'Mage', classIcon: '🔮',
-    spine: { skelUrl: '/assets/heroes/003/L05001.skel', atlasUrl: '/assets/heroes/003/L05001.atlas' },
+    spine: { jsonUrl: '/assets/heroes/character_spine3875/002/action.json', atlasUrl: '/assets/heroes/character_spine3875/002/action.atlas' },
     active: true,
   },
   {
     id: '3', name: 'Rika', level: 25, stars: 4, classType: 'Archer', classIcon: '🏹',
-    spine: { skelUrl: '/assets/heroes/004/H30103.skel', atlasUrl: '/assets/heroes/004/H30103.atlas' },
+    spine: { jsonUrl: '/assets/heroes/character_spine3875/003/H30058.json', atlasUrl: '/assets/heroes/character_spine3875/003/H30058.atlas' },
     active: true,
   },
   {
     id: '4', name: 'Nami', level: 25, stars: 3, classType: 'Healer', classIcon: '💚',
-    spine: { skelUrl: '/assets/heroes/005/crew110016.skel', atlasUrl: '/assets/heroes/005/crew110016.atlas' },
+    spine: { jsonUrl: '/assets/heroes/character_spine3875/004/H30107.json', atlasUrl: '/assets/heroes/character_spine3875/004/H30107.atlas' },
     active: true,
-  },
-  {
-    id: '5', name: 'Kamos', level: 25, stars: 5, classType: 'Tank', classIcon: '🛡️',
-    spine: { skelUrl: '/assets/heroes/006/crew110026.skel', atlasUrl: '/assets/heroes/006/crew110026.atlas' },
-    active: true,
-  },
-  {
-    id: '6', name: 'Lina', level: 22, stars: 2, classType: 'Mage', classIcon: '🔮',
-    spine: { skelUrl: '/assets/heroes/007/crew130004.skel', atlasUrl: '/assets/heroes/007/crew130004.atlas' },
-    active: false,
-  },
-  {
-    id: '7', name: 'Jugg', level: 20, stars: 1, classType: 'Warrior', classIcon: '⚔️',
-    spine: { jsonUrl: '/assets/heroes/001/cream_arcade_000.json', atlasUrl: '/assets/heroes/001/cream_arcade_000.atlas' },
-    active: false,
   },
 ];
 
@@ -91,13 +76,13 @@ export default function HeroesPanel({ onClose }: HeroesPanelProps) {
 
               {/* Character - Spine Animation */}
               <div className={styles.characterArea}>
-                <SpineCharacter
+                <SpineRenderer
                   jsonUrl={hero.spine.jsonUrl}
                   skelUrl={hero.spine.skelUrl}
                   atlasUrl={hero.spine.atlasUrl}
                   animation={hero.spine.animation || 'Idle'}
-                  width={100}
-                  height={100}
+                  width={120}
+                  height={140}
                 />
               </div>
 

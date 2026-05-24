@@ -174,13 +174,13 @@
 /* Active Badge */
 .activeBadge {
   background: linear-gradient(135deg, #2ecc40, #1fa030);
-  border-radius: 4px;
-  padding: 0.15rem 0.5rem;
-  font-size: 0.6rem;
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.5rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: 0.5px;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
 /* Stars */
