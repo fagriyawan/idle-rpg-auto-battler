@@ -19,21 +19,21 @@ describe('FormatDetector - detectFormat', () => {
     });
   });
 
-  describe('skel36 path (atlas with pma line)', () => {
-    it('returns skel36 when atlas text contains pma:true', () => {
-      const atlasText = `cream_arcade_000.png\nsize: 512,384\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\npma: true\n`;
+  describe('skel36 path (atlas with index field)', () => {
+    it('returns skel36 when atlas text contains index: field (pma:true header)', () => {
+      const atlasText = `cream_arcade_000.png\npma:true\nsize: 512,384\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nArm_Left\n  rotate: false\n  xy: 239, 20\n  size: 39, 49\n  orig: 39, 49\n  offset: 0, 0\n  index: -1\n`;
       const result = detectFormat(undefined, '/assets/heroes/003/L05001.skel', atlasText);
       expect(result).toBe('skel36');
     });
 
-    it('returns skel36 when atlas text contains pma:false', () => {
-      const atlasText = `crew110016.png\nsize: 1024,1024\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\npma: false\n`;
+    it('returns skel36 when atlas text contains index: field (pma:false header)', () => {
+      const atlasText = `crew110016.png\nsize: 1024,1024\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\npma: false\nBody\n  rotate: false\n  xy: 0, 0\n  size: 100, 100\n  orig: 100, 100\n  offset: 0, 0\n  index: -1\n`;
       const result = detectFormat(undefined, '/assets/heroes/005/crew110016.skel', atlasText);
       expect(result).toBe('skel36');
     });
 
-    it('returns skel36 when pma line has extra whitespace', () => {
-      const atlasText = `texture.png\nsize: 512,512\n  pma: true\nfilter: Linear,Linear\n`;
+    it('returns skel36 when atlas has index field with extra whitespace', () => {
+      const atlasText = `texture.png\nsize: 512,512\npma: true\nfilter: Linear,Linear\nregion1\n  rotate: false\n  xy: 0, 0\n  size: 50, 50\n  orig: 50, 50\n  offset: 0, 0\n  index: -1\n`;
       const result = detectFormat(undefined, '/some/path.skel', atlasText);
       expect(result).toBe('skel36');
     });
@@ -66,9 +66,9 @@ describe('FormatDetector - detectFormat', () => {
       expect(result).toBe('skel36');
     });
 
-    it('returns skel38 when atlas has content but no pma line in first 10 lines', () => {
-      const atlasText = `texture.png\nsize: 512,512\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nregion1\n  rotate: false\n  xy: 0, 0\n  size: 100, 100\n  orig: 100, 100\npma: true\n`;
-      // pma: true is on line 11 (0-indexed line 10), outside the first 10 lines inspected
+    it('returns skel38 when atlas has content but no index: field', () => {
+      const atlasText = `texture.png\nsize: 512,512\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nregion1\n  rotate: false\n  xy: 0, 0\n  size: 100, 100\n  orig: 100, 100\n`;
+      // No "index:" field present — indicates Spine 3.8 format
       const result = detectFormat(undefined, '/some/path.skel', atlasText);
       expect(result).toBe('skel38');
     });

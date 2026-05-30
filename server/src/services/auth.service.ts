@@ -4,6 +4,8 @@ import { ethers } from "ethers";
 import { config } from "../config";
 import * as nonceRepository from "../repositories/nonce.repository";
 import * as playerRepository from "../repositories/player.repository";
+import * as playerProfileRepository from "../repositories/player-profile.repository";
+import * as playerService from "./player.service";
 import { NonceResponse, AuthResponse, Player } from "../types";
 
 const NONCE_EXPIRY_MINUTES = 5;
@@ -47,6 +49,13 @@ export async function verifySignature(
   let player = await playerRepository.findByWalletAddress(walletAddress);
   if (!player) {
     player = await playerRepository.createPlayer(walletAddress);
+  }
+
+  // Initialize player profile, resources, and starter heroes if not already done.
+  // Check if the player has a profile (display_name set) — if not, they haven't been initialized.
+  const existingProfile = await playerProfileRepository.getProfile(player.id);
+  if (!existingProfile || existingProfile.displayName === null) {
+    await playerService.initializeNewPlayer(player.id, player.walletAddress);
   }
 
   await playerRepository.updateLastLogin(walletAddress);

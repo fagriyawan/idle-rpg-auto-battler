@@ -63,7 +63,28 @@ export class TextureCache {
     }
     this.cache.clear();
   }
+
+  /**
+   * Marks all cached textures as dirty so they get re-uploaded
+   * when used in a new WebGL context. Call this after destroying
+   * a PixiJS Application that used these textures.
+   */
+  invalidateForNewContext(): void {
+    for (const [, entry] of this.cache) {
+      entry.texture.dirtyId++;
+      entry.texture.dirtyStyleId++;
+    }
+  }
 }
 
 // Singleton instance shared across all SpineRenderer components
 export const textureCache = new TextureCache();
+
+/**
+ * Marks all cached textures as dirty so they get re-uploaded
+ * when used in a new WebGL context. Call this after destroying
+ * a PixiJS Application that used these textures.
+ */
+export function invalidateTexturesForNewContext(): void {
+  textureCache.invalidateForNewContext();
+}

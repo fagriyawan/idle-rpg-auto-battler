@@ -1,0 +1,240 @@
+/* Full-screen overlay — consistent with HeroesPanel */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+}
+
+/* Back button — top-left */
+.backButton {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(58, 90, 138, 0.3);
+  border: 1px solid rgba(100, 150, 220, 0.4);
+  border-radius: 8px;
+  color: #a0c4f0;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.backButton:hover {
+  background: rgba(58, 90, 138, 0.5);
+  border-color: rgba(100, 150, 220, 0.7);
+  color: #fff;
+}
+
+/* Two-column container */
+.container {
+  display: flex;
+  width: 90%;
+  max-width: 1100px;
+  height: 80vh;
+  gap: 1.5rem;
+}
+
+/* Left column — character display */
+.leftColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #1a2744, #0f1a30);
+  border: 2px solid #3a5a8a;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.characterDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}
+
+/* Arrow buttons for character switching */
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #a0c4f0;
+  background: rgba(58, 90, 138, 0.3);
+  border: 1px solid rgba(100, 150, 220, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.arrowButton:hover {
+  background: rgba(58, 90, 138, 0.6);
+  border-color: rgba(100, 150, 220, 0.8);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.arrowButton:active {
+  transform: scale(0.95);
+  background: rgba(58, 90, 138, 0.8);
+}
+
+/* Right column — tab content */
+.rightColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #1a2744, #0f1a30);
+  border: 2px solid #3a5a8a;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Tab navigation */
+.tabNav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(58, 90, 138, 0.2);
+  border: 1px solid rgba(100, 150, 220, 0.3);
+  border-radius: 8px;
+  color: #7aa8d4;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabButton:hover {
+  background: rgba(58, 90, 138, 0.4);
+  border-color: rgba(100, 150, 220, 0.5);
+  color: #a0c4f0;
+}
+
+.tabButtonActive {
+  background: rgba(58, 90, 138, 0.6);
+  border-color: rgba(100, 180, 255, 0.8);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(100, 180, 255, 0.3);
+}
+
+.tabContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero name */
+.heroName {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Star rating */
+.starRating {
+  display: flex;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.starFilled {
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+.starEmpty {
+  color: #5a6a80;
+  font-size: 1.2rem;
+}
+
+/* Spine container */
+.spineContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  margin-bottom: 0.75rem;
+}
+
+/* Level Up button */
+.levelUpButton {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, #4a8c3f, #2d6b24);
+  border: 2px solid #6abf5e;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.levelUpButton:hover {
+  background: linear-gradient(180deg, #5aa04d, #3a7d30);
+  border-color: #8cdf80;
+  transform: translateY(-1px);
+}
+
+/* Placeholder text */
+.placeholderText {
+  color: #a0c4f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 95%;
+    height: 90vh;
+    gap: 1rem;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    flex: none;
+    height: 45%;
+  }
+
+  .backButton {
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

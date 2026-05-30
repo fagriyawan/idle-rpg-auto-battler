@@ -290,6 +290,106 @@
   100% { transform: rotate(360deg); }
 }
 
+/* HUD Skeleton Loading */
+.hudSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.skeletonCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e0d5b8 25%, #f0e8d0 50%, #e0d5b8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.skeletonLine {
+  width: 80px;
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e0d5b8 25%, #f0e8d0 50%, #e0d5b8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonLineShort {
+  width: 40px;
+}
+
+.resourceSkeleton {
+  min-width: 70px;
+  justify-content: center;
+}
+
+.skeletonPulse {
+  width: 50px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e0d5b8 25%, #f0e8d0 50%, #e0d5b8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* HUD Error State */
+.hudError {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0;
+}
+
+.errorIcon {
+  font-size: 0.9rem;
+}
+
+.errorText {
+  font-size: 0.7rem;
+  color: #8b3a3a;
+  font-weight: 600;
+}
+
+.retryBtn {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border: 1px solid #c8a84b;
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(200, 168, 75, 0.3), rgba(200, 168, 75, 0.1));
+  color: #5a3e00;
+  transition: all 0.2s ease;
+}
+
+.retryBtn:hover {
+  background: linear-gradient(135deg, rgba(200, 168, 75, 0.5), rgba(200, 168, 75, 0.3));
+}
+
+.resourceError {
+  border-color: #c85050;
+}
+
+/* Disabled nav items while loading */
+.navItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .topHud {

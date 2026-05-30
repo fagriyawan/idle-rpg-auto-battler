@@ -1,0 +1,14 @@
+-- Add combat-related columns to hero_templates for the battle system
+ALTER TABLE hero_templates
+  ADD COLUMN attack_range INTEGER NOT NULL DEFAULT 80,
+  ADD COLUMN attack_speed FLOAT NOT NULL DEFAULT 1.5,
+  ADD COLUMN move_speed INTEGER NOT NULL DEFAULT 150,
+  ADD COLUMN max_mana INTEGER NOT NULL DEFAULT 1000,
+  ADD COLUMN mana_regen FLOAT NOT NULL DEFAULT 10,
+  ADD COLUMN mana_on_attack INTEGER NOT NULL DEFAULT 80,
+  ADD COLUMN mana_on_hit INTEGER NOT NULL DEFAULT 40,
+  ADD COLUMN crit_rate FLOAT NOT NULL DEFAULT 5,
+  ADD COLUMN crit_damage FLOAT NOT NULL DEFAULT 1.5,
+  ADD COLUMN magic_resistance INTEGER NOT NULL DEFAULT 0,
+  ADD COLUMN combat_type VARCHAR(20) NOT NULL DEFAULT 'melee',
+  ADD COLUMN formation_row VARCHAR(10) NOT NULL DEFAULT 'front';

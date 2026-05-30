@@ -1,0 +1,14 @@
+-- Migration 022: Seed wave data for Chapter 1 (10 stages × 3 difficulties × 3 waves)
+-- Enemy stat multipliers: Easy=1.0x, Hard=1.8x, Nightmare=3.0x
+-- Positions vary per wave for variety
+
+-- Helper: Base enemies for stage 1-1
+-- Wave 1: 2 goblins (front)
+-- Wave 2: 3 goblins (spread)
+-- Wave 3: 1 goblin warrior + 2 goblins
+
+-- STAGE 1-1 EASY
+INSERT INTO stage_waves (stage_id, difficulty, wave_number, enemies) VALUES
+('1-1', 'easy', 1, '[{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":70,"positionY":45},{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":75,"positionY":60}]'),
+('1-1', 'easy', 2, '[{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":68,"positionY":35},{"name":"Forest Goblin","level":1,"hp":220,"attack":32,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":72,"positionY":55},{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":78,"positionY":70}]'),
+('1-1', 'easy', 3, '[{"name":"Goblin Warrior","level":2,"hp":350,"attack":45,"defense":20,"magicResist":10,"icon":"👹","combatType":"melee","attackRange":50,"attackSpeed":1.3,"moveSpeed":75,"maxMana":100,"manaRegen":5,"manaOnAttack":60,"manaOnHit":40,"critRate":5,"critDamage":1.4,"positionX":70,"positionY":50},{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":78,"positionY":35},{"name":"Forest Goblin","level":1,"hp":200,"attack":30,"defense":10,"magicResist":5,"icon":"👺","combatType":"melee","attackRange":50,"attackSpeed":1.5,"moveSpeed":70,"maxMana":100,"manaRegen":5,"manaOnAttack":50,"manaOnHit":40,"critRate":3,"critDamage":1.3,"positionX":78,"positionY":65}]');

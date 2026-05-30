@@ -63,7 +63,11 @@ export function usePixiApp(
       canvas.removeEventListener('webglcontextlost', handleContextLost);
       canvas.removeEventListener('webglcontextrestored', handleContextRestored);
       setApp(null);
-      pixiApp.destroy(true, { children: true, texture: true, baseTexture: true });
+      // Destroy the PixiJS app and its resources
+      // NOTE: Do NOT clear the global textureCache here — other SpineRenderers
+      // may still be using shared textures. The texture cache uses reference
+      // counting and handles cleanup via release() in the spine loader.
+      pixiApp.destroy(true, { children: true, texture: false, baseTexture: false });
     };
   }, [containerRef, width, height]);
 

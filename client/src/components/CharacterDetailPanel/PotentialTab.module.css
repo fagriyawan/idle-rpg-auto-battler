@@ -1,0 +1,95 @@
+.potentialTab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.section {
+  background: rgba(26, 39, 68, 0.6);
+  border: 1px solid rgba(58, 90, 138, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.sectionTitle {
+  color: #a0c4f0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(58, 90, 138, 0.4);
+}
+
+.skillRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(15, 26, 48, 0.5);
+}
+
+.skillIcon {
+  font-size: 1.4rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(58, 90, 138, 0.3);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.skillInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.skillName {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.skillLevel {
+  color: #6dd5a0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.upgradeButton {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #4a90d9, #357abd);
+  border: 1px solid rgba(100, 160, 230, 0.5);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.upgradeButton:hover {
+  background: linear-gradient(135deg, #5aa0e9, #4a8acd);
+  transform: translateY(-1px);
+}
+
+.upgradeButton:active {
+  transform: translateY(0);
+}
+
+.noSkillData {
+  color: #5a7a9e;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+}

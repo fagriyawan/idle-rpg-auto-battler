@@ -1,0 +1,155 @@
+.infoTab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.section {
+  background: rgba(26, 39, 68, 0.6);
+  border: 1px solid rgba(58, 90, 138, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.sectionTitle {
+  color: #a0c4f0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(58, 90, 138, 0.4);
+}
+
+.attributesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attributeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(15, 26, 48, 0.5);
+}
+
+.attributeIcon {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.attributeLabel {
+  color: #8aa8cc;
+  font-size: 0.85rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.attributeValue {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.skillDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: rgba(15, 26, 48, 0.5);
+}
+
+.skillHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.skillIcon {
+  font-size: 1.4rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(58, 90, 138, 0.3);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.skillNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skillName {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.skillLevel {
+  color: #6dd5a0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.skillDescription {
+  color: #8aa8cc;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+  padding-left: 2.6rem;
+}
+
+.noSkillData {
+  color: #5a7a9e;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.runeGrid {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.runeSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 8px;
+  background: rgba(15, 26, 48, 0.5);
+  border: 1px solid rgba(58, 90, 138, 0.4);
+  gap: 0.2rem;
+}
+
+.runeIcon {
+  font-size: 1.2rem;
+}
+
+.runeLevel {
+  color: #6dd5a0;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.runePlaceholder {
+  font-size: 1.4rem;
+  color: #3a5a8a;
+  opacity: 0.6;
+}

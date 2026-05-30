@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { PlayerDataProvider } from './context/PlayerDataContext';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -11,7 +12,14 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PlayerDataProvider>
+                  <Dashboard />
+                </PlayerDataProvider>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

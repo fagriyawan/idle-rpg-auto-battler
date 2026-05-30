@@ -1,0 +1,727 @@
+/* ============================================
+   Campaign Panel — Fantasy RPG Stage Map
+   Bright landscape with sky, mountains, valleys
+   ============================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(180deg,
+      #87CEEB 0%,
+      #B0E0E6 18%,
+      #a8c8d8 28%,
+      #8ba4b8 35%,
+      #7a96a8 40%,
+      #6d9a6d 50%,
+      #7BC67E 60%,
+      #5db85d 75%,
+      #4A9E4A 100%
+    );
+  overflow: hidden;
+}
+
+/* Mountain silhouettes via pseudo-elements */
+.overlay::before {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background:
+    /* Far mountains */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath d='M0 300 L0 200 Q100 80 200 180 Q280 100 380 160 Q450 60 550 140 Q620 40 720 130 Q800 70 900 150 Q980 90 1050 170 Q1100 100 1200 180 L1200 300Z' fill='rgba(90,120,140,0.35)'/%3E%3C/svg%3E") no-repeat center bottom;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background:
+    /* Near mountains / hills */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 250'%3E%3Cpath d='M0 250 L0 180 Q80 120 180 160 Q260 90 360 140 Q440 70 540 130 Q640 60 740 120 Q820 80 920 140 Q1000 100 1100 150 Q1150 120 1200 160 L1200 250Z' fill='rgba(70,110,80,0.3)'/%3E%3C/svg%3E") no-repeat center bottom;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 24px 12px;
+  background: transparent;
+  border-bottom: none;
+  position: relative;
+  z-index: 20;
+}
+
+/* Resources bar at top of campaign */
+.resourcesBar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.resourceChip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(200, 168, 75, 0.6);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #3d2b00;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.headerSubtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 4px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button — top right white circle */
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 1);
+  color: #333;
+  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 30;
+}
+
+.closeBtn:hover {
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Content area */
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+/* Map area */
+.mapArea {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapBackground {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Decorative clouds on map area */
+.mapArea::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 120px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 40px;
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatCloud 20s ease-in-out infinite;
+}
+
+.mapArea::after {
+  content: '';
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  width: 90px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatCloud 25s ease-in-out infinite reverse;
+}
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+/* Path lines connecting stages */
+.pathLine {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pathLineSvg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pathLineSvg line {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+}
+
+/* Stage nodes */
+.stageNode {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stageNode:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.stageNodeInner {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  position: relative;
+  border: 3px solid rgba(100, 220, 255, 0.8);
+  background: linear-gradient(180deg, #ffffff 0%, #e8f4ff 100%);
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.5), 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Locked stage */
+.stageNodeLocked {
+  background: linear-gradient(180deg, #b0b0b0 0%, #888888 100%);
+  border-color: rgba(150, 150, 150, 0.5);
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.stageNodeLocked:hover {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Unlocked (available but not current) */
+.stageNodeUnlocked {
+  background: linear-gradient(180deg, #ffffff 0%, #e0f0ff 100%);
+  border-color: rgba(100, 200, 255, 0.7);
+  color: #2a4a6a;
+  box-shadow: 0 0 12px rgba(0, 180, 255, 0.4), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Current stage — pulsing cyan glow */
+.stageNodeCurrent {
+  background: linear-gradient(180deg, #ffffff 0%, #d0f0ff 100%);
+  border-color: rgba(0, 200, 255, 0.9);
+  color: #1a3a5a;
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 0 0 40px rgba(0, 200, 255, 0.3);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Cleared stage — gold/green glow */
+.stageNodeCleared {
+  background: linear-gradient(180deg, #fffde8 0%, #f0e68c 100%);
+  border-color: rgba(218, 165, 32, 0.8);
+  color: #5a4a1a;
+  box-shadow: 0 0 12px rgba(218, 165, 32, 0.4), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Selected stage — brighter glow + scale */
+.stageNodeSelected {
+  border-color: rgba(0, 220, 255, 1) !important;
+  box-shadow: 0 0 25px rgba(0, 220, 255, 0.7), 0 0 50px rgba(0, 220, 255, 0.3) !important;
+  transform: scale(1.1);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 0 0 40px rgba(0, 200, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 200, 255, 0.8), 0 0 60px rgba(0, 200, 255, 0.4);
+  }
+}
+
+/* Stage number inside circle */
+.stageNumber {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #2a3a5a;
+}
+
+/* Stars below node */
+.stageStars {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1px;
+  font-size: 0.7rem;
+}
+
+.starFilled {
+  color: #ffd700;
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+}
+
+.starEmpty {
+  color: #ccc;
+}
+
+/* Stage label below */
+.stageLabel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Detail Panel — floating card on right
+   ============================================ */
+.detailPanel {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1.25rem;
+  overflow-y: auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 15;
+  backdrop-filter: blur(8px);
+}
+
+.detailTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2a2a4a;
+  text-align: center;
+}
+
+.detailStageId {
+  font-size: 0.78rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailSectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.enemyList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enemyItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.enemyIcon {
+  font-size: 1.3rem;
+}
+
+.enemyInfo {
+  flex: 1;
+}
+
+.enemyName {
+  font-size: 0.85rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.enemyLevel {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.enemyStats {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.rewardsList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rewardItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: #fef9e7;
+  border-radius: 8px;
+  border: 1px solid #fde68a;
+}
+
+.rewardIcon {
+  font-size: 1rem;
+}
+
+.rewardValue {
+  font-size: 0.85rem;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.energyCost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #eff6ff;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+}
+
+.energyIcon {
+  font-size: 1rem;
+}
+
+.energyValue {
+  font-size: 0.85rem;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+/* Start button — cyan pill */
+.startBtn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: auto;
+}
+
+.startBtnActive {
+  background: linear-gradient(180deg, #7DD3FC, #38BDF8);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+}
+
+.startBtnActive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+  background: linear-gradient(180deg, #93e0fd, #4fc3f7);
+}
+
+.startBtnDisabled {
+  background: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.detailPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+}
+
+/* Recommended level badge */
+.recommendedLevel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  padding: 4px 0;
+}
+
+/* ============================================
+   Loading & Error states
+   ============================================ */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #ffffff;
+  font-size: 1rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.retryBtn {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: #2a4a6a;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.retryBtn:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Victory Toast
+   ============================================ */
+.victoryToast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  background: rgba(255, 255, 255, 0.97);
+  border: 2px solid #ffd700;
+  border-radius: 20px;
+  padding: 32px 48px;
+  text-align: center;
+  box-shadow:
+    0 0 40px rgba(255, 215, 0, 0.2),
+    0 16px 48px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.victoryTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2a2a4a;
+  margin-bottom: 8px;
+}
+
+.victoryStars {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.victoryMessage {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.victoryBtn {
+  padding: 10px 28px;
+  background: linear-gradient(180deg, #7DD3FC, #38BDF8);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  transition: all 0.2s;
+}
+
+.victoryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(56, 189, 248, 0.4);
+}
+
+/* ============================================
+   Responsive — mobile: detail panel at bottom
+   ============================================ */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .detailPanel {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-height: 40vh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .headerTitle {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  .stageNodeInner {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Difficulty Tabs */
+.difficultyTabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.diffTab {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: capitalize;
+}
+
+.diffTab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.diffTabActive {
+  background: rgba(100, 180, 255, 0.2);
+  border-color: rgba(100, 180, 255, 0.6);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(100, 180, 255, 0.3);
+}
+
+.diffTabLocked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+}

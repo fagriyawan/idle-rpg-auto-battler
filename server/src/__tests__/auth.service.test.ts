@@ -15,6 +15,17 @@ vi.mock("../repositories/player.repository", () => ({
   updateLastLogin: vi.fn(),
 }));
 
+vi.mock("../repositories/player-profile.repository", () => ({
+  getProfile: vi.fn(),
+  initializeProfile: vi.fn(),
+  initializeResources: vi.fn(),
+  getResourceBalances: vi.fn(),
+}));
+
+vi.mock("../services/player.service", () => ({
+  initializeNewPlayer: vi.fn(),
+}));
+
 // Mock the config
 vi.mock("../config", () => ({
   config: {
@@ -25,6 +36,8 @@ vi.mock("../config", () => ({
 
 import * as nonceRepository from "../repositories/nonce.repository";
 import * as playerRepository from "../repositories/player.repository";
+import * as playerProfileRepository from "../repositories/player-profile.repository";
+import * as playerService from "../services/player.service";
 import { generateNonce, verifySignature, validateToken } from "../services/auth.service";
 
 const TEST_WALLET = "0x1234567890abcdef1234567890abcdef12345678";
@@ -120,6 +133,18 @@ describe("Auth Service", () => {
       vi.mocked(nonceRepository.markNonceUsed).mockResolvedValue(undefined);
       vi.mocked(playerRepository.findByWalletAddress).mockResolvedValue(player);
       vi.mocked(playerRepository.updateLastLogin).mockResolvedValue(undefined);
+      // Player already initialized — has a display name
+      vi.mocked(playerProfileRepository.getProfile).mockResolvedValue({
+        id: player.id,
+        walletAddress: player.walletAddress,
+        displayName: "Player_1234ab",
+        level: 1,
+        experience: 0,
+        experienceToNextLevel: 100,
+        resources: { gold: 500, gems: 50, energy: 100 },
+        createdAt: "2024-01-01T00:00:00.000Z",
+        lastLoginAt: "2024-01-01T00:00:00.000Z",
+      });
 
       const result = await verifySignature(walletAddress, signature, nonce);
 
@@ -136,6 +161,8 @@ describe("Auth Service", () => {
 
       expect(nonceRepository.markNonceUsed).toHaveBeenCalledWith(nonce);
       expect(playerRepository.updateLastLogin).toHaveBeenCalledWith(walletAddress);
+      // Should NOT call initializeNewPlayer since player is already initialized
+      expect(playerService.initializeNewPlayer).not.toHaveBeenCalled();
     });
 
     it("should create a new player if one does not exist", async () => {
@@ -166,11 +193,29 @@ describe("Auth Service", () => {
       vi.mocked(playerRepository.findByWalletAddress).mockResolvedValue(null);
       vi.mocked(playerRepository.createPlayer).mockResolvedValue(newPlayer);
       vi.mocked(playerRepository.updateLastLogin).mockResolvedValue(undefined);
+      // New player — no profile exists yet (displayName is null)
+      vi.mocked(playerProfileRepository.getProfile).mockResolvedValue({
+        id: newPlayer.id,
+        walletAddress: newPlayer.walletAddress,
+        displayName: null,
+        level: 1,
+        experience: 0,
+        experienceToNextLevel: 100,
+        resources: { gold: 0, gems: 0, energy: 0 },
+        createdAt: new Date().toISOString(),
+        lastLoginAt: new Date().toISOString(),
+      });
+      vi.mocked(playerService.initializeNewPlayer).mockResolvedValue(null);
 
       const result = await verifySignature(walletAddress, signature, nonce);
 
       expect(result.player).toEqual(newPlayer);
       expect(playerRepository.createPlayer).toHaveBeenCalledWith(walletAddress);
+      // Should call initializeNewPlayer since displayName is null
+      expect(playerService.initializeNewPlayer).toHaveBeenCalledWith(
+        newPlayer.id,
+        newPlayer.walletAddress
+      );
     });
 
     it("should throw an error for an invalid or expired nonce", async () => {

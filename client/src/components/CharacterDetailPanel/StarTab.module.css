@@ -1,0 +1,108 @@
+.starTab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.section {
+  background: rgba(26, 39, 68, 0.6);
+  border: 1px solid rgba(58, 90, 138, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.sectionTitle {
+  color: #a0c4f0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(58, 90, 138, 0.4);
+}
+
+.starDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0;
+}
+
+.starFilled {
+  font-size: 1.8rem;
+  color: #ffd700;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+}
+
+.starEmpty {
+  font-size: 1.8rem;
+  color: #3a5a8a;
+  opacity: 0.5;
+}
+
+.starNext {
+  font-size: 1.8rem;
+  color: #ffd700;
+  opacity: 0.5;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+}
+
+.starLabel {
+  color: #8aa8cc;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0.25rem 0 0;
+}
+
+.maxedText {
+  color: #6dd5a0;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.starUpButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d4a017, #f5c842);
+  color: #1a1a2e;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(212, 160, 23, 0.3);
+}
+
+.starUpButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.5);
+}
+
+.starUpButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.starUpButton:disabled {
+  background: rgba(58, 90, 138, 0.4);
+  color: #5a7a9e;
+  cursor: not-allowed;
+  box-shadow: none;
+}
